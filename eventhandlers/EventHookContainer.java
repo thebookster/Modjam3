@@ -18,13 +18,13 @@ public class EventHookContainer {
 	public void livingDropsEvent(LivingDropsEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
 			ArrayList<EntityItem> drops = event.drops;
-			event.drops.clear();
 			Random rand = new Random();
 			if (rand.nextInt(2) == 0) {
 				EntityFriendlyGhost ghost = new EntityFriendlyGhost(event.entityLiving.worldObj, event.entityLiving);
 				ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
 				for (int i = 0; i < 40; i++) {
-					System.out.println("thebookster test");
+					System.out.println("thebookster test" );
+					System.out.println(drops.size());
 					if (drops.get(i) != null) {
 						ghost.setCurrentItemOrArmor(i, drops.get(i).getEntityItem());
 					}
@@ -36,7 +36,8 @@ public class EventHookContainer {
 				EntityMeanGhost ghost = new EntityMeanGhost(event.entityLiving.worldObj, event.entityLiving);
 				ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
 				for (int i = 0; i < 40; i++) {
-					System.out.println("thebookster test");
+					System.out.println("thebookster test" );
+					System.out.println(drops.size());
 					if (drops.get(i) != null) {
 						ghost.setCurrentItemOrArmor(i, drops.get(i).getEntityItem());
 					}
@@ -45,6 +46,7 @@ public class EventHookContainer {
 					event.entityLiving.worldObj.spawnEntityInWorld(ghost);
 				}
 			}
+			event.drops.clear();
 		}
 	}
 	
