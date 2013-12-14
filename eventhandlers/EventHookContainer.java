@@ -17,18 +17,24 @@ public class EventHookContainer {
 	@ForgeSubscribe
 	public void livingDropsEvent(LivingDropsEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
-			//ArrayList<EntityItem> drops = event.drops;
-			//event.drops.clear();
+			ArrayList<EntityItem> drops = event.drops;
+			event.drops.clear();
 			Random rand = new Random();
 			if (rand.nextInt(2) == 0) {
 				EntityFriendlyGhost ghost = new EntityFriendlyGhost(event.entityLiving.worldObj, event.entityLiving);
 				ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
+				for (int i = 0; i < 40; i++) {
+					ghost.setCurrentItemOrArmor(i, drops.get(i).getEntityItem());
+				}
 				if (!event.entityLiving.worldObj.isRemote) {
 					event.entityLiving.worldObj.spawnEntityInWorld(ghost);
 				}
 			} else {
 				EntityMeanGhost ghost = new EntityMeanGhost(event.entityLiving.worldObj, event.entityLiving);
 				ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
+				for (int i = 0; i < 40; i++) {
+					ghost.setCurrentItemOrArmor(i, drops.get(i).getEntityItem());
+				}
 				if (!event.entityLiving.worldObj.isRemote) {
 					event.entityLiving.worldObj.spawnEntityInWorld(ghost);
 				}
