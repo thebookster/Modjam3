@@ -24,7 +24,10 @@ public class EventHookContainer {
 				EntityFriendlyGhost ghost = new EntityFriendlyGhost(event.entityLiving.worldObj, event.entityLiving);
 				ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
 				for (int i = 0; i < 40; i++) {
-					ghost.setCurrentItemOrArmor(i, drops.get(i).getEntityItem());
+					System.out.println("thebookster test");
+					if (drops.get(i) != null) {
+						ghost.setCurrentItemOrArmor(i, drops.get(i).getEntityItem());
+					}
 				}
 				if (!event.entityLiving.worldObj.isRemote) {
 					event.entityLiving.worldObj.spawnEntityInWorld(ghost);
@@ -33,7 +36,10 @@ public class EventHookContainer {
 				EntityMeanGhost ghost = new EntityMeanGhost(event.entityLiving.worldObj, event.entityLiving);
 				ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
 				for (int i = 0; i < 40; i++) {
-					ghost.setCurrentItemOrArmor(i, drops.get(i).getEntityItem());
+					System.out.println("thebookster test");
+					if (drops.get(i) != null) {
+						ghost.setCurrentItemOrArmor(i, drops.get(i).getEntityItem());
+					}
 				}
 				if (!event.entityLiving.worldObj.isRemote) {
 					event.entityLiving.worldObj.spawnEntityInWorld(ghost);
