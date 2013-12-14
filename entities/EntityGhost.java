@@ -21,5 +21,10 @@ public class EntityGhost extends EntityMob{
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(2D);
 	}
 	
+	@Override
+	protected boolean canDespawn() {
+		return false;
+	}
+	
 
 }

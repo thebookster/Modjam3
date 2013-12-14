@@ -25,10 +25,10 @@ public class EntityFriendlyGhost extends EntityGhost{
 	}
 	
 	@Override
-	public void onLivingUpdate() {
+	public void onUpdate() {
 		if (this.entityToAttack != null && this.entityToAttack.equals(player)) {
 			this.entityToAttack = null;
 		}
-		super.onLivingUpdate();
+		super.onUpdate();
 	}
 }
