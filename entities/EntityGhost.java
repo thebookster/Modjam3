@@ -14,6 +14,7 @@ public class EntityGhost extends EntityMob{
 
 	public EntityGhost(World par1World) {
 		super(par1World);
+		this.setCanPickUpLoot(true);
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
         {
             this.equipmentDropChances[i] = 1.0F;
@@ -35,6 +36,7 @@ public class EntityGhost extends EntityMob{
 		return false;
 	}
 	
+
 	
 	
 
