@@ -1,6 +1,7 @@
 package ghostmod;
 
 import ghostmod.config.ConfigHandler;
+import ghostmod.entities.Entities;
 import ghostmod.network.PacketHandler;
 import ghostmod.proxies.CommonProxy;
 import cpw.mods.fml.common.Mod;
@@ -28,6 +29,7 @@ public class GhostMod {
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
 		proxy.initSounds();
 		proxy.initRenderers();
+		Entities.init();
 	}
 	
 	@EventHandler
