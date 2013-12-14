@@ -1,4 +1,4 @@
-package ghostmod.entities;
+package ghostmod.entities; 
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,5 +22,13 @@ public class EntityFriendlyGhost extends EntityGhost{
 	protected Entity findPlayerToAttack() {
         EntityPlayer entityplayer = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
         return entityplayer != null && !entityplayer.equals(player) && this.canEntityBeSeen(entityplayer) ? entityplayer : null;
+	}
+	
+	@Override
+	public void onLivingUpdate() {
+		if (this.entityToAttack != null && this.entityToAttack.equals(player)) {
+			this.entityToAttack = null;
+		}
+		super.onLivingUpdate();
 	}
 }

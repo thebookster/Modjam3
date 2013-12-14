@@ -1,20 +1,24 @@
 package ghostmod.eventhandlers;
 
 import ghostmod.entities.EntityFriendlyGhost;
-import ghostmod.entities.EntityGhost;
 import ghostmod.entities.EntityMeanGhost;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
 public class EventHookContainer {
 
 	@ForgeSubscribe
-	public void onDeath(LivingDeathEvent event) {
+	public void livindDropsEvent(LivingDropsEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
+			//ArrayList<EntityItem> drops = event.drops;
+			//event.drops.clear();
 			Random rand = new Random();
 			if (rand.nextInt(2) == 0) {
 				EntityFriendlyGhost ghost = new EntityFriendlyGhost(event.entityLiving.worldObj, event.entityLiving);
@@ -29,8 +33,7 @@ public class EventHookContainer {
 					event.entityLiving.worldObj.spawnEntityInWorld(ghost);
 				}
 			}
-
-
 		}
 	}
+	
 }
