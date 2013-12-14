@@ -33,6 +33,7 @@ public class EntityGhost extends EntityMob{
 	
 	@Override
 	protected boolean canDespawn() {
+		
 		return false;
 	}
 	
