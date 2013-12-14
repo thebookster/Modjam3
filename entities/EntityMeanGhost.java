@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 
 public class EntityMeanGhost extends EntityGhost{
 
-	public EntityMeanGhost(World par1World, EntityLivingBase entityLiving) {
+	public EntityMeanGhost(World par1World) {
 		super(par1World);
 	}
 

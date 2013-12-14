@@ -2,6 +2,7 @@ package ghostmod;
 
 import ghostmod.config.ConfigHandler;
 import ghostmod.entities.Entities;
+import ghostmod.eventhandlers.EventHookContainer;
 import ghostmod.network.PacketHandler;
 import ghostmod.proxies.CommonProxy;
 import net.minecraftforge.common.MinecraftForge;
