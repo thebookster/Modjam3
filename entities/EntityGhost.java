@@ -4,9 +4,12 @@ import java.util.Random;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityGhost extends EntityMob{
+	
+	private ItemStack[] equipment = new ItemStack[40];
 
 	public EntityGhost(World par1World) {
 		super(par1World);
@@ -25,6 +28,8 @@ public class EntityGhost extends EntityMob{
 	protected boolean canDespawn() {
 		return false;
 	}
+	
+	
 	
 
 }

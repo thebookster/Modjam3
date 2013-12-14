@@ -15,7 +15,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 public class EventHookContainer {
 
 	@ForgeSubscribe
-	public void livindDropsEvent(LivingDropsEvent event) {
+	public void livingDropsEvent(LivingDropsEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
 			//ArrayList<EntityItem> drops = event.drops;
 			//event.drops.clear();
