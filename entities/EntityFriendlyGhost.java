@@ -8,9 +8,14 @@ import net.minecraft.world.World;
 public class EntityFriendlyGhost extends EntityGhost{
 
 	protected EntityLivingBase player = null;
+	public EntityFriendlyGhost(World world, EntityLivingBase entity) {
+		super(world);
+		if (entity instanceof EntityPlayer) {
+			player = entity;
+		}
+	}
 	public EntityFriendlyGhost(World world) {
 		super(world);
-		
 	}
 	
 	@Override
