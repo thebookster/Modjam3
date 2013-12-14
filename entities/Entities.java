@@ -3,8 +3,10 @@ package ghostmod.entities;
 import net.minecraft.entity.EntityEggInfo;
 import net.minecraft.entity.EntityList;
 import ghostmod.GhostMod;
+import ghostmod.ModInformation;
 import ghostmod.config.ConfigHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Entities {
 	
@@ -18,4 +20,6 @@ public class Entities {
 		EntityList.entityEggs.put(ConfigHandler.meanGhostEggID, new EntityEggInfo(ConfigHandler.meanGhostEggID, -1, -1));
 
 	}
+	
+
 }

@@ -28,8 +28,8 @@ public class ConfigHandler {
 		spawnMeanGhosts = config.get("General", "spawnMeanGhosts", true).getBoolean(true);
 		meanGhostEggID = config.get("General",  "meanGhostEgg",  101).getInt();
 		
-		FriendlyGhostID = config.get("IDs", "friendlyGhost", 1).getInt();
-		MeanGhostID = config.get("IDs", "meanGhost", 2).getInt();
+		FriendlyGhostID = config.get("IDs", "friendlyGhost", 100).getInt();
+		MeanGhostID = config.get("IDs", "meanGhost", 101).getInt();
 		
 		config.save();
 	}

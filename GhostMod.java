@@ -34,7 +34,7 @@ public class GhostMod {
 	
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
-		
+
 	}
 	
 	@EventHandler
