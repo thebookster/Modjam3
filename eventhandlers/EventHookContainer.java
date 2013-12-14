@@ -27,7 +27,6 @@ public class EventHookContainer {
 			} else {
 				EntityMeanGhost ghost = new EntityMeanGhost(event.entityLiving.worldObj, event.entityLiving);
 				ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
-
 				if (!event.entityLiving.worldObj.isRemote) {
 					event.entityLiving.worldObj.spawnEntityInWorld(ghost);
 				}
