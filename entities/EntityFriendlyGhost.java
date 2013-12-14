@@ -1,11 +1,16 @@
 package ghostmod.entities;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class EntityFriendlyGhost extends EntityGhost{
 
-	public EntityFriendlyGhost(World par1World) {
-		super(par1World);
+	protected EntityLivingBase player;
+	public EntityFriendlyGhost(World world, EntityLivingBase entityLiving) {
+		super(world);
+		if (!(entityLiving instanceof EntityPlayer)) {
+			throw new Exception();
+		}
 	}
-
 }
