@@ -5,19 +5,11 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderMeanGhost extends RenderBiped {
+public class RenderMeanGhost extends RenderGhost {
 
 	public RenderMeanGhost()
 	{
-
-        super(new ModelZombie(), 0.5F);
-		this.shadowSize *= 0.0F;
+        super();
+		
 	}
-
-
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return new ResourceLocation("ghostmod:textures/meanGhost.png");
-	}
-
 }
