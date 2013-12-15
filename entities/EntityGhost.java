@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
+
 public class EntityGhost extends EntityMob{
 	
 	private ItemStack[] carriedItems = new ItemStack[50];
