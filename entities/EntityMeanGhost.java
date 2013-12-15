@@ -17,7 +17,7 @@ public class EntityMeanGhost extends EntityGhost{
 	
 	@Override
 	public void onUpdate() {
-		if (this.canEntityBeSeen(player)) {
+		if (player != null && this.canEntityBeSeen(player)) {
 			this.entityToAttack = player;
 		}
 	}
