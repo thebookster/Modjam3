@@ -8,16 +8,14 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderGhost extends RenderBiped {
 
+	protected Entity player;
+	
 	public RenderGhost()
 	{
-        super(new ModelZombie(), 0.5F);
-		this.shadowSize *= 0.0F;
+        super(new ModelZombie(), 0.5F);;
+		this.bindEntityTexture(player);
 	}
 
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return RenderPlayer.getEntityTexture(entity);
-	}
 
 }
