@@ -8,14 +8,26 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderGhost extends RenderBiped {
 
-	protected Entity player;
+	private static Entity player;
 	
 	public RenderGhost()
 	{
         super(new ModelZombie(), 0.5F);;
-		this.bindEntityTexture(player);
+		//this.bindEntityTexture(getPlayer());
 	}
 
+	public Entity getPlayer() {
+		return player;
+	}
+
+	public static void setPlayer(Entity entity) {
+		player = entity;
+	}
+	
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity) {
+		return new ResourceLocation("ghostmod:textures/meanghost.png");
+	}
 
 
 }

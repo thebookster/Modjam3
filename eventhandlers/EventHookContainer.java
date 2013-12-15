@@ -21,9 +21,9 @@ public class EventHookContainer {
 			EntityGhost ghost; 
 			Random rand = new Random();
 			if (rand.nextInt(2) == 0) {
-				ghost = new EntityFriendlyGhost(event.entityLiving.worldObj, event.entityLiving);
+				ghost = new EntityFriendlyGhost(event.entityLiving.worldObj, (EntityPlayer)event.entityLiving);
 			} else {
-				ghost = new EntityMeanGhost(event.entityLiving.worldObj, event.entityLiving);
+				ghost = new EntityMeanGhost(event.entityLiving.worldObj, (EntityPlayer)event.entityLiving);
 			}
 			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
 /*			ArrayList<EntityItem> drops = event.drops;
