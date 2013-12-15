@@ -2,6 +2,7 @@ package ghostmod.entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAIOwnerHurtByTarget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 

@@ -18,7 +18,6 @@ import cpw.mods.fml.common.network.NetworkMod;
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION)
 @NetworkMod(channels = {ModInformation.CHANNEL}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class GhostMod {
-
 	
 	@Instance(ModInformation.ID)
 	public static GhostMod instance;
