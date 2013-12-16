@@ -26,6 +26,7 @@ public class EntityExtra extends EntityGhost{
 
 	}
 	
+	
 /*	@Override
 	public void onUpdate() {
 		if (player != null && this.canEntityBeSeen(player)) {
