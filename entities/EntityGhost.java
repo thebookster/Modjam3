@@ -22,6 +22,7 @@ public class EntityGhost extends EntityMob{
         {
             this.equipmentDropChances[i] = 1.0F;
         }
+        this.isImmuneToFire = true;
 	}
 	
 	@Override
@@ -97,6 +98,11 @@ public class EntityGhost extends EntityMob{
                 this.carriedItems[i] = ItemStack.loadItemStackFromNBT((NBTTagCompound)nbttaglist.tagAt(i));
             }
         }
+	}
+	
+	public void killGhost() {
+		this.dropEquipment(false, 1);
+		this.setDead();
 	}
 
 	

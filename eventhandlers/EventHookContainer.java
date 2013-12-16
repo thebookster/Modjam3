@@ -47,7 +47,7 @@ public class EventHookContainer {
 		if (event.target instanceof EntityFriendlyGhost) {
 			EntityFriendlyGhost ghost = (EntityFriendlyGhost)event.target;
 			if (ghost.player != null && ghost.player.getEntityName() == event.entityPlayer.getEntityName()) {
-				ghost.setDead();
+				ghost.killGhost();
 			}
 		}
 	}
