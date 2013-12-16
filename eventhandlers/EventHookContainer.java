@@ -10,6 +10,7 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 
 public class EventHookContainer {
 
@@ -37,6 +38,17 @@ public class EventHookContainer {
 				
 			}
 
+		}
+	}
+	
+	@ForgeSubscribe
+	public void entityAttack(AttackEntityEvent event) {
+		if (event.target instanceof EntityFriendlyGhost) {
+			System.out.println("thebookster test");
+			EntityFriendlyGhost ghost = (EntityFriendlyGhost)event.target;
+			if (ghost.player != null && ghost.player == event.entityPlayer) {
+				ghost.setDead();
+			}
 		}
 	}
 	

@@ -6,7 +6,8 @@ import net.minecraft.world.World;
 
 public class EntityFriendlyGhost extends EntityGhost{
 
-	protected EntityPlayer player = null;
+	public EntityPlayer player = null;
+	
 	public EntityFriendlyGhost(World world, EntityPlayer entity) {
 		super(world);
 		player = entity;

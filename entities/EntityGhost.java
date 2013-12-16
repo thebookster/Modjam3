@@ -2,6 +2,7 @@ package ghostmod.entities;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -9,6 +10,8 @@ import net.minecraft.world.World;
 
 
 public class EntityGhost extends EntityMob{
+	
+	public EntityPlayer player = null;
 	
 	private ItemStack[] carriedItems = new ItemStack[50];
 

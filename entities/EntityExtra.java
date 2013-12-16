@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class EntityExtra extends EntityGhost{
 
-	protected EntityPlayer player = null;
+	public EntityPlayer player = null;
 	public EntityExtra(World world, EntityPlayer entity) {
 		super(world);
 		player = entity;
@@ -27,11 +27,11 @@ public class EntityExtra extends EntityGhost{
 	}
 	
 	
-/*	@Override
+	@Override
 	public void onUpdate() {
 		if (player != null && this.canEntityBeSeen(player)) {
 			this.entityToAttack = player;
 		}
-	}*/
+	}
 
 }

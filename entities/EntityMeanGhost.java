@@ -6,7 +6,8 @@ import net.minecraft.world.World;
 
 public class EntityMeanGhost extends EntityGhost{
 
-	protected EntityPlayer player = null;
+	public EntityPlayer player = null;
+	
 	public EntityMeanGhost(World world, EntityPlayer entity) {
 		super(world);
 		player = entity;
@@ -15,11 +16,11 @@ public class EntityMeanGhost extends EntityGhost{
 		super(world);
 	}
 	
-/*	@Override
+	@Override
 	public void onUpdate() {
 		if (player != null && this.canEntityBeSeen(player)) {
 			this.entityToAttack = player;
 		}
-	}*/
+	}
 
 }
