@@ -1,5 +1,7 @@
 package ghostmod.entities;
 
+import java.util.ArrayList;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +15,7 @@ public class EntityGhost extends EntityMob{
 	
 	public EntityPlayer player = null;
 	
-	private ItemStack[] carriedItems = new ItemStack[50];
+	private ArrayList<ItemStack> carriedItems;
 
 	public EntityGhost(World par1World) {
 		super(par1World);
@@ -43,9 +45,9 @@ public class EntityGhost extends EntityMob{
 	@Override
 	protected void dropEquipment(boolean par1, int par2) {
 		super.dropEquipment(par1, par2);
-		for (int j = 0; j < getCarriedItems().length; ++j)
+		for (int j = 0; j < getCarriedItems().size(); ++j)
         {
-            ItemStack itemstack = getCarriedItems()[j];
+            ItemStack itemstack = getCarriedItems().get(j);
             boolean flag1 = true;
 
             if (itemstack != null) 
@@ -55,11 +57,11 @@ public class EntityGhost extends EntityMob{
         }
 	}
 
-	public ItemStack[] getCarriedItems() {
+	public ArrayList<ItemStack> getCarriedItems() {
 		return carriedItems;
 	}
 
-	public void setCarriedItems(ItemStack[] carriedItems) {
+	public void setCarriedItems(ArrayList<ItemStack> carriedItems) {
 		this.carriedItems = carriedItems;
 	}
 	
@@ -69,13 +71,13 @@ public class EntityGhost extends EntityMob{
         NBTTagList nbttaglist = new NBTTagList();
         NBTTagCompound nbttagcompound1;
 
-        for (int i = 0; i < this.carriedItems.length; ++i)
+        for (int i = 0; i < this.carriedItems.size(); ++i)
         {
             nbttagcompound1 = new NBTTagCompound();
 
-            if (this.carriedItems[i] != null)
+            if (this.carriedItems.get(i) != null)
             {
-                this.carriedItems[i].writeToNBT(nbttagcompound1);
+                this.carriedItems.get(i).writeToNBT(nbttagcompound1);
             }
 
             nbttaglist.appendTag(nbttagcompound1);
@@ -93,9 +95,9 @@ public class EntityGhost extends EntityMob{
         {
             nbttaglist = par1NBTTagCompound.getTagList("CarriedItems");
 
-            for (int i = 0; i < this.carriedItems.length; ++i)
+            for (int i = 0; i < this.carriedItems.size(); ++i)
             {
-                this.carriedItems[i] = ItemStack.loadItemStackFromNBT((NBTTagCompound)nbttaglist.tagAt(i));
+                this.carriedItems.set(i, ItemStack.loadItemStackFromNBT((NBTTagCompound)nbttaglist.tagAt(i)));
             }
         }
 	}

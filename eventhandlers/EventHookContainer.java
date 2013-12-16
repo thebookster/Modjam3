@@ -10,12 +10,21 @@ import java.util.Random;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 
 public class EventHookContainer {
 
+	protected void equipBestArmorAndWeapon (ArrayList<EntityItem> drops, EntityGhost ghost) {
+		ItemStack[] result = new ItemStack[5];
+		for (int i = 0; i < drops.size(); i++) {
+			
+		}
+		
+	}
+	
 	@ForgeSubscribe
 	public void livingDropsEvent(LivingDropsEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
@@ -31,7 +40,7 @@ public class EventHookContainer {
 			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
 			ArrayList<EntityItem> drops = event.drops;
 			for (int i = 0; i < drops.size(); i++) {
-				ghost.getCarriedItems()[i] = drops.get(i).getEntityItem();
+				ghost.getCarriedItems() = drops.get(i).getEntityItem();
 			}
 			event.drops.clear();
 			if (!event.entityLiving.worldObj.isRemote) {
