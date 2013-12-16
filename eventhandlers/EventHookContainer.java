@@ -5,8 +5,10 @@ import ghostmod.entities.EntityFriendlyGhost;
 import ghostmod.entities.EntityGhost;
 import ghostmod.entities.EntityMeanGhost;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -26,13 +28,12 @@ public class EventHookContainer {
 			} else {
 				ghost = new EntityMeanGhost(event.entityLiving.worldObj, (EntityPlayer)event.entityLiving);
 			}
-			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
-			System.out.println(event.entityLiving.posY+3);
-/*			ArrayList<EntityItem> drops = event.drops;
+			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
+			ArrayList<EntityItem> drops = event.drops;
 			for (int i = 0; i < drops.size(); i++) {
 				ghost.getCarriedItems()[i] = drops.get(i).getEntityItem();
 			}
-			event.drops.clear();*/
+			event.drops.clear();
 			if (!event.entityLiving.worldObj.isRemote) {
 				event.entityLiving.worldObj.spawnEntityInWorld(ghost);
 				
@@ -44,9 +45,8 @@ public class EventHookContainer {
 	@ForgeSubscribe
 	public void entityAttack(AttackEntityEvent event) {
 		if (event.target instanceof EntityFriendlyGhost) {
-			System.out.println("thebookster test");
 			EntityFriendlyGhost ghost = (EntityFriendlyGhost)event.target;
-			if (ghost.player != null && ghost.player == event.entityPlayer) {
+			if (ghost.player != null && ghost.player.getEntityName() == event.entityPlayer.getEntityName()) {
 				ghost.setDead();
 			}
 		}

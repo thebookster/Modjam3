@@ -1,11 +1,10 @@
 package ghostmod.entities;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class EntityExtra extends EntityGhost{
+public class EntityExtra extends EntityMeanGhost{
 
 	public EntityPlayer player = null;
 	public EntityExtra(World world, EntityPlayer entity) {
@@ -27,11 +26,5 @@ public class EntityExtra extends EntityGhost{
 	}
 	
 	
-	@Override
-	public void onUpdate() {
-		if (player != null && this.canEntityBeSeen(player)) {
-			this.entityToAttack = player;
-		}
-	}
 
 }
