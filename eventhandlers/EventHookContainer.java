@@ -26,6 +26,7 @@ public class EventHookContainer {
 				ghost = new EntityMeanGhost(event.entityLiving.worldObj, (EntityPlayer)event.entityLiving);
 			}
 			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY+3, event.entityLiving.posZ);
+			System.out.println(event.entityLiving.posY+3);
 /*			ArrayList<EntityItem> drops = event.drops;
 			for (int i = 0; i < drops.size(); i++) {
 				ghost.getCarriedItems()[i] = drops.get(i).getEntityItem();

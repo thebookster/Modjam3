@@ -13,7 +13,6 @@ public class RenderGhost extends RenderBiped {
 	public RenderGhost()
 	{
         super(new ModelZombie(), 0.5F);;
-		//this.bindEntityTexture(getPlayer());
 	}
 
 	public Entity getPlayer() {
@@ -27,7 +26,6 @@ public class RenderGhost extends RenderBiped {
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		return new ResourceLocation("ghostmod:textures/meanghost.png");
+		//return getEntityTexture(getPlayer());
 	}
-
-
 }
