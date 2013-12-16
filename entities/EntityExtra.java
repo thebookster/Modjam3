@@ -11,7 +11,6 @@ public class EntityExtra extends EntityGhost{
 	public EntityExtra(World world, EntityPlayer entity) {
 		super(world);
 		player = entity;
-		
 	}
 	public EntityExtra(World world) {
 		super(world);
