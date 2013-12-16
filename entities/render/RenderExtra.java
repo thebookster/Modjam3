@@ -5,14 +5,14 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderFriendlyGhost extends RenderBiped {
+public class RenderExtra extends RenderBiped {
 
-	public RenderFriendlyGhost() {
-		super(new ModelZombie(), 0.5F);
+	public RenderExtra() {
+		super(new ModelZombie(), 2F);
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		return new ResourceLocation("ghostmod:textures/friendlyghost.png");
+		return new ResourceLocation("ghostmod:textures/extra.png");
 	}
 }
