@@ -23,6 +23,7 @@ public class EventHookContainer {
 
 	protected void equipBestArmorAndWeapon (ArrayList<EntityItem> drops, EntityGhost ghost) {
 		ItemStack[] result = new ItemStack[5];
+		int[] resultIndex = new int[5];
 		for (int i = 0; i < drops.size(); i++) {
 			if (drops.get(i) != null) {
 				ItemStack itemstack = drops.get(i).getEntityItem();
@@ -32,29 +33,29 @@ public class EventHookContainer {
 						ItemSword sword = (ItemSword)item;
 						if (result[0] == null || sword.func_82803_g() > ((ItemSword)result[0].getItem()).func_82803_g()) {
 							result[0] = itemstack;
-							drops.remove(i);
+							resultIndex[0] = i;
 						}
 					} else if (item instanceof ItemArmor) {
 						ItemArmor armor = (ItemArmor)item;
 						switch (armor.armorType) {
 							case 0: if (result[1] == null || armor.damageReduceAmount > ((ItemArmor)result[1].getItem()).damageReduceAmount) {
 								result[1] = itemstack;
-								drops.remove(i);
+								resultIndex[1] = i;
 								break;
 							}
 							case 1: if (result[2] == null || armor.damageReduceAmount > ((ItemArmor)result[2].getItem()).damageReduceAmount) {
 								result[2] = itemstack;
-								drops.remove(i);
+								resultIndex[2] = i;
 								break;
 							}
 							case 2: if (result[3] == null || armor.damageReduceAmount > ((ItemArmor)result[3].getItem()).damageReduceAmount) {
 								result[3] = itemstack;
-								drops.remove(i);
+								resultIndex[3] = i;
 								break;
 							}
 							case 3: if (result[4] == null || armor.damageReduceAmount > ((ItemArmor)result[4].getItem()).damageReduceAmount) {
 								result[4] = itemstack;
-								drops.remove(i);
+								resultIndex[4] = i;
 								break;
 							}
 						}
@@ -63,7 +64,10 @@ public class EventHookContainer {
 			}
 		}
 		for (int i = 0; i < 5; i++) {
-			ghost.setCurrentItemOrArmor(i, result[i]);
+			if (drops != null) {
+				drops.remove(resultIndex[i]);
+				ghost.setCurrentItemOrArmor(i, result[i]);
+			}
 		}
 	}
 	
@@ -73,22 +77,23 @@ public class EventHookContainer {
 			EntityGhost ghost; 
 			Random rand = new Random();
 			if (rand.nextInt(2) == 0) {
-				ghost = new EntityFriendlyGhost(event.entityLiving.worldObj, (EntityPlayer)event.entityLiving);
+				ghost = new EntityFriendlyGhost(event.entityLiving.worldObj, ((EntityPlayer)event.entityLiving).getEntityName());
 			} else if (rand.nextInt(1000) == 666) {
 				ghost = new EntityExtra(event.entityLiving.worldObj, (EntityPlayer)event.entityLiving);
 			} else {
-				ghost = new EntityMeanGhost(event.entityLiving.worldObj, (EntityPlayer)event.entityLiving);
+				ghost = new EntityMeanGhost(event.entityLiving.worldObj, ((EntityPlayer)event.entityLiving).getEntityName());
 			}
 			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
 			ArrayList<EntityItem> drops = event.drops;
-			//equipBestArmorAndWeapon(drops, ghost);
-			/*for (int i = 0; i < drops.size(); i++) {
-				if (drops.get(i) != null) {
-					System.out.println("thebookster test");
-					ghost.getCarriedItems().add(i, drops.get(i).getEntityItem());
+			equipBestArmorAndWeapon(drops, ghost);
+			for (int i = 0; i < drops.size(); i++) {
+				EntityItem drop = drops.get(i);
+				if (drop != null) {
+					ghost.getCarriedItems().add(drop.getEntityItem());
+					
 				}
 			}
-			event.drops.clear();*/
+			event.drops.clear();
 			if (!event.entityLiving.worldObj.isRemote) {
 				event.entityLiving.worldObj.spawnEntityInWorld(ghost);
 				
@@ -101,7 +106,7 @@ public class EventHookContainer {
 	public void entityAttack(AttackEntityEvent event) {
 		if (event.target instanceof EntityFriendlyGhost) {
 			EntityFriendlyGhost ghost = (EntityFriendlyGhost)event.target;
-			if (ghost.player != null && ghost.player.getEntityName() == event.entityPlayer.getEntityName()) {
+			if (ghost.player != null && ghost.player == event.entityPlayer.getEntityName()) {
 				ghost.killGhost();
 			}
 		}

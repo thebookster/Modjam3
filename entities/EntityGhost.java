@@ -13,9 +13,9 @@ import net.minecraft.world.World;
 
 public class EntityGhost extends EntityMob{
 	
-	public EntityPlayer player = null;
+	public String player = null;
 	
-	private ArrayList<ItemStack> carriedItems;
+	private ArrayList<ItemStack> carriedItems = new ArrayList();
 
 	public EntityGhost(World par1World) {
 		super(par1World);
@@ -44,17 +44,33 @@ public class EntityGhost extends EntityMob{
 	
 	@Override
 	protected void dropEquipment(boolean par1, int par2) {
-		super.dropEquipment(par1, par2);
-		for (int j = 0; j < getCarriedItems().size(); ++j)
-        {
-            ItemStack itemstack = getCarriedItems().get(j);
-            boolean flag1 = true;
-
-            if (itemstack != null) 
-            {
-                this.entityDropItem(itemstack, 0.0F);
-            }
-        }
+		ArrayList<ItemStack> carriedItems = getCarriedItems();
+		if (carriedItems != null) {
+			for (int j = 0; j < carriedItems.size(); ++j)
+	        {
+	            ItemStack itemstack = carriedItems.get(j);
+	            boolean flag1 = true;
+	
+	            if (itemstack != null) 
+	            {
+	                this.entityDropItem(itemstack, 0.0F);
+	            }
+	        }
+		}
+		ItemStack[] equipment = this.getLastActiveItems();
+		if (equipment != null) {
+			for (int j = 0; j < equipment.length; ++j)
+	        {
+	            ItemStack itemstack = equipment[j];
+	            boolean flag1 = true;
+	
+	            if (itemstack != null) 
+	            {
+	                this.entityDropItem(itemstack, 0.0F);
+	            }
+	        }
+		}
+		
 	}
 
 	public ArrayList<ItemStack> getCarriedItems() {
@@ -68,6 +84,7 @@ public class EntityGhost extends EntityMob{
 	@Override
 	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
 		super.writeEntityToNBT(par1NBTTagCompound);
+		par1NBTTagCompound.setString("player", player);
         NBTTagList nbttaglist = new NBTTagList();
         NBTTagCompound nbttagcompound1;
 
@@ -99,6 +116,9 @@ public class EntityGhost extends EntityMob{
             {
                 this.carriedItems.add(i, ItemStack.loadItemStackFromNBT((NBTTagCompound)nbttaglist.tagAt(i)));
             }
+        }
+        if (par1NBTTagCompound.hasKey(player)) {
+        	this.player = par1NBTTagCompound.getString("player");
         }
 	}
 	
