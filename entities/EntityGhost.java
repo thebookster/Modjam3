@@ -97,7 +97,7 @@ public class EntityGhost extends EntityMob{
 
             for (int i = 0; i < this.carriedItems.size(); ++i)
             {
-                this.carriedItems.add(ItemStack.loadItemStackFromNBT((NBTTagCompound)nbttaglist.tagAt(i)));
+                this.carriedItems.add(i, ItemStack.loadItemStackFromNBT((NBTTagCompound)nbttaglist.tagAt(i)));
             }
         }
 	}

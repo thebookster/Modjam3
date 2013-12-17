@@ -32,29 +32,29 @@ public class EventHookContainer {
 						ItemSword sword = (ItemSword)item;
 						if (result[0] == null || sword.func_82803_g() > ((ItemSword)result[0].getItem()).func_82803_g()) {
 							result[0] = itemstack;
-							drops.remove(drops.get(i));
+							drops.remove(i);
 						}
 					} else if (item instanceof ItemArmor) {
 						ItemArmor armor = (ItemArmor)item;
 						switch (armor.armorType) {
 							case 0: if (result[1] == null || armor.damageReduceAmount > ((ItemArmor)result[1].getItem()).damageReduceAmount) {
 								result[1] = itemstack;
-								drops.remove(drops.get(i));
+								drops.remove(i);
 								break;
 							}
 							case 1: if (result[2] == null || armor.damageReduceAmount > ((ItemArmor)result[2].getItem()).damageReduceAmount) {
 								result[2] = itemstack;
-								drops.remove(drops.get(i));
+								drops.remove(i);
 								break;
 							}
 							case 2: if (result[3] == null || armor.damageReduceAmount > ((ItemArmor)result[3].getItem()).damageReduceAmount) {
 								result[3] = itemstack;
-								drops.remove(drops.get(i));
+								drops.remove(i);
 								break;
 							}
 							case 3: if (result[4] == null || armor.damageReduceAmount > ((ItemArmor)result[4].getItem()).damageReduceAmount) {
 								result[4] = itemstack;
-								drops.remove(drops.get(i));
+								drops.remove(i);
 								break;
 							}
 						}
@@ -81,10 +81,10 @@ public class EventHookContainer {
 			}
 			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
 			ArrayList<EntityItem> drops = event.drops;
-			equipBestArmorAndWeapon(drops, ghost);
+			//equipBestArmorAndWeapon(drops, ghost);
 			for (int i = 0; i < drops.size(); i++) {
 				if (drops.get(i) != null) {
-					ghost.getCarriedItems().add(drops.get(i).getEntityItem());
+					ghost.getCarriedItems().add(i, drops.get(i).getEntityItem());
 				}
 			}
 			event.drops.clear();
