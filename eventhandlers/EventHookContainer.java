@@ -82,12 +82,13 @@ public class EventHookContainer {
 			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
 			ArrayList<EntityItem> drops = event.drops;
 			//equipBestArmorAndWeapon(drops, ghost);
-			for (int i = 0; i < drops.size(); i++) {
+			/*for (int i = 0; i < drops.size(); i++) {
 				if (drops.get(i) != null) {
+					System.out.println("thebookster test");
 					ghost.getCarriedItems().add(i, drops.get(i).getEntityItem());
 				}
 			}
-			event.drops.clear();
+			event.drops.clear();*/
 			if (!event.entityLiving.worldObj.isRemote) {
 				event.entityLiving.worldObj.spawnEntityInWorld(ghost);
 				
