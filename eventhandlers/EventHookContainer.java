@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -29,22 +30,41 @@ public class EventHookContainer {
 				if (item != null) {
 					if (item instanceof ItemSword) {
 						ItemSword sword = (ItemSword)item;
-						if (sword.func_82803_g() > ((ItemSword)result[0].getItem()).func_82803_g()) {
+						if (result[0] == null || sword.func_82803_g() > ((ItemSword)result[0].getItem()).func_82803_g()) {
 							result[0] = itemstack;
+							drops.remove(drops.get(i));
 						}
-					else if (item instanceof ItemArmor) {
+					} else if (item instanceof ItemArmor) {
 						ItemArmor armor = (ItemArmor)item;
 						switch (armor.armorType) {
-						case 0: if (armor.damageReduceAmount > ((It))
+							case 0: if (result[1] == null || armor.damageReduceAmount > ((ItemArmor)result[1].getItem()).damageReduceAmount) {
+								result[1] = itemstack;
+								drops.remove(drops.get(i));
+								break;
+							}
+							case 1: if (result[2] == null || armor.damageReduceAmount > ((ItemArmor)result[2].getItem()).damageReduceAmount) {
+								result[2] = itemstack;
+								drops.remove(drops.get(i));
+								break;
+							}
+							case 2: if (result[3] == null || armor.damageReduceAmount > ((ItemArmor)result[3].getItem()).damageReduceAmount) {
+								result[3] = itemstack;
+								drops.remove(drops.get(i));
+								break;
+							}
+							case 3: if (result[4] == null || armor.damageReduceAmount > ((ItemArmor)result[4].getItem()).damageReduceAmount) {
+								result[4] = itemstack;
+								drops.remove(drops.get(i));
+								break;
+							}
 						}
-					}
-				        
-						
 					}
 				}
 			}
 		}
-		
+		for (int i = 0; i < 5; i++) {
+			ghost.setCurrentItemOrArmor(i, result[i]);
+		}
 	}
 	
 	@ForgeSubscribe
@@ -61,8 +81,11 @@ public class EventHookContainer {
 			}
 			ghost.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
 			ArrayList<EntityItem> drops = event.drops;
+			equipBestArmorAndWeapon(drops, ghost);
 			for (int i = 0; i < drops.size(); i++) {
-				ghost.getCarriedItems().set(i, drops.get(i).getEntityItem());
+				if (drops.get(i) != null) {
+					ghost.getCarriedItems().add(drops.get(i).getEntityItem());
+				}
 			}
 			event.drops.clear();
 			if (!event.entityLiving.worldObj.isRemote) {
