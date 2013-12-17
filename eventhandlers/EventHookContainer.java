@@ -23,7 +23,7 @@ public class EventHookContainer {
 
 	protected void equipBestArmorAndWeapon (ArrayList<EntityItem> drops, EntityGhost ghost) {
 		ItemStack[] result = new ItemStack[5];
-		int[] resultIndex = new int[5];
+		EntityItem[] resultEntity = new EntityItem[5];
 		for (int i = 0; i < drops.size(); i++) {
 			if (drops.get(i) != null) {
 				ItemStack itemstack = drops.get(i).getEntityItem();
@@ -33,29 +33,29 @@ public class EventHookContainer {
 						ItemSword sword = (ItemSword)item;
 						if (result[0] == null || sword.func_82803_g() > ((ItemSword)result[0].getItem()).func_82803_g()) {
 							result[0] = itemstack;
-							resultIndex[0] = i;
+							resultEntity[0] = drops.get(i);
 						}
 					} else if (item instanceof ItemArmor) {
 						ItemArmor armor = (ItemArmor)item;
 						switch (armor.armorType) {
 							case 0: if (result[1] == null || armor.damageReduceAmount > ((ItemArmor)result[1].getItem()).damageReduceAmount) {
 								result[1] = itemstack;
-								resultIndex[1] = i;
+								resultEntity[1] = drops.get(i);
 								break;
 							}
 							case 1: if (result[2] == null || armor.damageReduceAmount > ((ItemArmor)result[2].getItem()).damageReduceAmount) {
 								result[2] = itemstack;
-								resultIndex[2] = i;
+								resultEntity[2] = drops.get(i);
 								break;
 							}
 							case 2: if (result[3] == null || armor.damageReduceAmount > ((ItemArmor)result[3].getItem()).damageReduceAmount) {
 								result[3] = itemstack;
-								resultIndex[3] = i;
+								resultEntity[3] = drops.get(i);
 								break;
 							}
 							case 3: if (result[4] == null || armor.damageReduceAmount > ((ItemArmor)result[4].getItem()).damageReduceAmount) {
 								result[4] = itemstack;
-								resultIndex[4] = i;
+								resultEntity[4] = drops.get(i);
 								break;
 							}
 						}
@@ -64,8 +64,8 @@ public class EventHookContainer {
 			}
 		}
 		for (int i = 0; i < 5; i++) {
-			if (drops != null) {
-				drops.remove(resultIndex[i]);
+			if (resultEntity[i] != null) {
+				drops.remove(resultEntity[i]);
 				ghost.setCurrentItemOrArmor(i, result[i]);
 			}
 		}
