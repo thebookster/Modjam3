@@ -102,7 +102,8 @@ public class EventHookContainer {
 		}
 	}
 	
-	@ForgeSubscribe
+	//Removed until I can figure out why it's causing problems
+/*	@ForgeSubscribe
 	public void entityAttack(AttackEntityEvent event) {
 		if (event.target instanceof EntityFriendlyGhost) {
 			EntityFriendlyGhost ghost = (EntityFriendlyGhost)event.target;
@@ -110,7 +111,7 @@ public class EventHookContainer {
 				ghost.killGhost();
 			}
 		}
-	}
+	}*/
 	
 	
 }
